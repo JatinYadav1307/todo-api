@@ -19,6 +19,16 @@ app.post('/todos', function (req, res) {
     })
 })
 
+app.get('/todos', function (req, res) {
+    Todo.find().then(function (todos) {
+        res.status(200).send({todos})
+    }).catch(function (error) {
+        res.status(400).send(error)
+    })
+})
+
 app.listen(3000, function () {
     console.log('Server is running at port 3000')
 })
+
+module.exports = {app}
