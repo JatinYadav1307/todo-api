@@ -94,6 +94,20 @@ app.patch('/todos/:id', function (req, res) {
     })
 })
 
+
+app.post('/users', function (req, res) {
+    const userObject = _.pick(req.body, ['email', 'password'])
+    let newUser = new User(userObject)
+
+    newUser.save().then(function () {
+        return newUser.generateAuthToken()
+    }).then(function (token) {
+        res.status(200).header('x-auth', token).send(newUser)
+    }).catch(function (error) {
+        res.status(400).send(error)
+    })
+})
+
 app.listen(port, function () {
     console.log(`Server is running at port ${port}`)
 })
