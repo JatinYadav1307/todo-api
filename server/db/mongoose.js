@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 let connString = null;
 if (process.env.PORT) {
-    connString = "mongodb://root:root@ds151004.mlab.com:51004/todo_app"
+    connString = "mongodb://jatin:jatin@ds147454.mlab.com:47454/todo_app"
 } else {
     connString = "mongodb://localhost:27017/TodoApp"
 }
